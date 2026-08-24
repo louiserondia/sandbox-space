@@ -4,6 +4,7 @@
 #include "Plane.h"
 #include "Line.h"
 #include "Point.h"
+#include "Cube.h"
 #include "Renderer.h"
 
 class Game : public BaseGame
@@ -46,4 +47,7 @@ private:
 	Vector	e1{ 0, 1, 0, 0 };
 	Vector	e2{ 0, 0, 1, 0 };
 	Vector	e3{ 0, 0, 0, 1 };
+
+	Cube	cube{ Point{1, 1, 0}, 2 };
+	Motor	motor{ 1, 0, 0, 0, 0, 0, 0, 0 };
 };

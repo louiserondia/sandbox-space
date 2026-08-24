@@ -4,9 +4,7 @@
 Point Point::ToEnginePoint(const TriVector& tv) 
 {
 	const float w{ tv.e123() };
-	return {
-		.position = Vector3f{ tv.e032() / w, tv.e013() / w, tv.e021() / w }
-	};
+	return Point{ tv.e032() / w, tv.e013() / w, tv.e021() / w };
 }
 
 TriVector Point::ToPGAPoint(const Point& p) 
@@ -17,4 +15,9 @@ TriVector Point::ToPGAPoint(const Point& p)
 		p.position.z,
 		1.0f
 	};
+}
+
+Point Point::operator+ (const Point& p) const
+{
+	return Point{ p.position.x + position.x, p.position.y + position.y, p.position.z + position.z };
 }

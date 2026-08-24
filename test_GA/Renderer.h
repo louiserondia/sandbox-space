@@ -3,6 +3,7 @@
 #include "Plane.h"
 #include "Line.h"
 #include "Point.h"
+#include "Cube.h"
 
 class Renderer
 {
@@ -12,6 +13,7 @@ public:
 	void DrawLine(const Line& l, float lineWidth = 1.f) const;
 	void DrawPoint(const TriVector& tv, float pointSize = 1.f) const;
 	void DrawPoint(const Point& p, float pointSize = 1.f) const;
+	void DrawCube(const Cube& cube, bool asPoints = false, float lineWidth = 1.f) const;
 
 private:
 

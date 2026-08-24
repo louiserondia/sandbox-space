@@ -164,6 +164,7 @@ xcopy "$(ProjectDir)Resources\*.*" "$(TargetDir)" /y /d /s</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Cube.cpp" />
     <ClCompile Include="FlyFish.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Line.cpp" />
@@ -174,6 +175,7 @@ xcopy "$(ProjectDir)Resources\*.*" "$(TargetDir)" /y /d /s</Command>
     <ClCompile Include="Renderer.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Cube.h" />
     <ClInclude Include="FlyFish.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Line.h" />

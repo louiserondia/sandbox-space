@@ -28,6 +28,8 @@ void Game::Cleanup()
 void Game::Update(float elapsedSec)
 {
 	v = Vector{ 0, cosf(time), sinf(time), 0 };
+	motor.s() = cosf(time);
+	motor.e31() = sinf(time);
 	time += elapsedSec;
 
 	const Uint8 *pStates = SDL_GetKeyboardState( nullptr );
@@ -63,9 +65,13 @@ void Game::Draw()
 		utils::SetColor(Color4f{ 1, 1, 1, 1 });
 		renderer.DrawPoint(pointRefected, 5.f);
 		utils::SetColor(Color4f{ .75f, .75f, .75f, 1 });
-		renderer.DrawPoint((GA::Inner(pointGAReflected, e2) * GA::Inverse(e2)).Grade3(), 7.f);
+		renderer.DrawPoint(((pointGAReflected | e2) * GA::Inverse(e2)).Grade3(), 7.f); // reflection : (a . b) a^-1
 		//renderer.DrawLine(Line{ u. }, 1.f);
 		//renderer.DrawLine(v, 1.f);
+
+		utils::SetColor(Color4f{ 1, 1, 1, 1 });
+		renderer.DrawCube(cube, false, 2.f);
+		renderer.DrawCube(RotateCube(cube, motor), false, 2.f);
 	}
 	glPopMatrix();
 }
