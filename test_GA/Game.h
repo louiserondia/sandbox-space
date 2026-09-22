@@ -48,6 +48,18 @@ private:
 	Vector	e2{ 0, 0, 1, 0 };
 	Vector	e3{ 0, 0, 0, 1 };
 
-	Cube	cube{ Point{1, 1, 0}, 2 };
-	Motor	motor{ 1, 0, 0, 0, 0, 0, 0, 0 };
+	BiVector e01{ 1, 0, 0, 0, 0, 0 };
+	BiVector e02{ 0, 1, 0, 0, 0, 0 };
+	BiVector e03{ 0, 0, 1, 0, 0, 0 };
+	BiVector e23{ 0, 0, 0, 1, 0, 0 };
+	BiVector e31{ 0, 0, 0, 0, 1, 0 };
+	BiVector e12{ 0, 0, 0, 0, 0, 1 };
+
+	TriVector e032{ 1, 0, 0, 0 };
+	TriVector e013{ 0, 1, 0, 0 };
+	TriVector e021{ 0, 0, 1, 0 };
+	TriVector e123{ 0, 0, 0, 1 };
+
+	Cube	cube{ Point{0, 0, 0}, 1 };
+	Motor	motor{ 0, 0, 0, 0, 0, 0, 0, 0 };
 };

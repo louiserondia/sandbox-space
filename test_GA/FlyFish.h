@@ -796,6 +796,107 @@ public:
     [[nodiscard]] Motor Gexp() const;
 };
 
+/*
+class Rotor final : public GAElement<Rotor, 4>
+{
+public:
+    using GAElement::GAElement;
+    using GAElement::operator*;
+    using GAElement::operator/;
+
+    inline float& s() { return get(0); }
+    inline float& e23() { return get(1); }
+    inline float& e31() { return get(2); }
+    inline float& e12() { return get(3); }
+
+    [[nodiscard]] inline const float& s() const { return get(0); }
+    [[nodiscard]] inline const float& e23() const { return get(1); }
+    [[nodiscard]] inline const float& e31() const { return get(2); }
+    [[nodiscard]] inline const float& e12() const { return get(3); }
+
+    [[nodiscard]] Rotor() : GAElement()
+    {
+    }
+
+    [[nodiscard]] Rotor(float s, float e23, float e31, float e12, float e0123) : GAElement()
+    {
+        data[0] = s;
+        data[1] = e23;
+        data[2] = e31;
+        data[3] = e12;
+    }
+
+    static constexpr std::array<const char*, 4> names() {
+        return { "", "e23", "e31", "e12" };
+    }
+
+    [[nodiscard]] float Norm() const override
+    {
+        return std::sqrt(data[0] * data[0] + data[1] * data[1] + data[2] * data[2] + data[3] * data[3]);
+    }
+
+    [[nodiscard]] BiVector Grade2() const;
+
+    [[nodiscard]] Rotor operator ~() const {
+        float norm{ Norm() };
+        float normSquared{ norm * norm };
+        return {
+            data[0] / normSquared ,
+            -data[1] / normSquared,
+            -data[2] / normSquared,
+            -data[3] / normSquared
+        };
+    };
+
+    [[nodiscard]] MultiVector operator* (const MultiVector& b) const;
+    [[nodiscard]] MultiVector operator* (const TriVector& b) const;
+    [[nodiscard]] Rotor operator* (const BiVector& b) const;
+    [[nodiscard]] MultiVector operator* (const Vector& b) const;
+    [[nodiscard]] Rotor operator* (const Rotor& b) const;
+
+    [[nodiscard]] MultiVector operator| (const MultiVector& b) const;
+    [[nodiscard]] MultiVector operator| (const TriVector& b) const;
+    [[nodiscard]] Rotor operator| (const BiVector& b) const;
+    [[nodiscard]] MultiVector operator| (const Vector& b) const;
+    [[nodiscard]] Rotor operator| (const Rotor& b) const;
+
+    [[nodiscard]] MultiVector operator& (const MultiVector& b) const;
+    [[nodiscard]] MultiVector operator& (const TriVector& b) const;
+    [[nodiscard]] Rotor operator& (const BiVector& b) const;
+    [[nodiscard]] Vector operator& (const Vector& b) const;
+    [[nodiscard]] Rotor operator& (const Rotor& b) const;
+
+    [[nodiscard]] MultiVector operator^(const MultiVector& b) const;
+    [[nodiscard]] TriVector operator^(const TriVector& b) const;
+    [[nodiscard]] Rotor operator^(const BiVector& b) const;
+    [[nodiscard]] MultiVector operator^(const Vector& b) const;
+    [[nodiscard]] MultiVector operator^(const Rotor& b) const;
+
+    Rotor& operator += (const BiVector& b)
+    {
+        for (size_t idx{}; idx < 6; idx++)
+        {
+            data[idx + 1] += b[idx];
+        }
+
+        return (*this);
+    }
+    Rotor& operator -= (const BiVector& b)
+    {
+        for (size_t idx{}; idx < 6; idx++)
+        {
+            data[idx + 1] -= b[idx];
+        }
+
+        return (*this);
+    }
+
+    [[nodiscard]] Rotor operator! () const;
+
+    [[nodiscard]] Rotor Gexp() const;
+};
+*/
+
 class GANull final : public GAElement<GANull, 0>
 {
 public:

@@ -20,5 +20,6 @@ private:
 
 };
 
+Cube RotateCube(const Cube& cube, const Vector& N, const Vector& M);
 Cube RotateCube(const Cube& cube, const Motor& motor);
 void RotateCube(const Cube& cube, Cube& projCube, const Motor& motor);
