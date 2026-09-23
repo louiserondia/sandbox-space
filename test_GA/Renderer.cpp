@@ -36,32 +36,32 @@ void Renderer::DrawPoint(const Point& p, float pointSize) const
 
 void Renderer::DrawCube(const Cube& cube, bool asPoints, float lineWidth) const
 {
-	if (asPoints)
-	{
+	//if (asPoints)
+	//{
 		for (size_t i{}; i < 8; i++)
 		{
 			DrawPoint(cube.points[i], 5.f);
 		}
-	}
-	else
-	{
-		const float size{ cube.points[1].position.x - cube.points[0].position.x };
-		const Point start{ cube.points[0] };
-		DrawLine(Line{ size, 0, 0, start.position.x, start.position.y, start.position.z }, lineWidth);
-		DrawLine(Line{ 0, size, 0, start.position.x, start.position.y, start.position.z }, lineWidth);
-		DrawLine(Line{ 0, 0, size, start.position.x, start.position.y, start.position.z }, lineWidth);
+	//}
+	//else
+	//{
+		//const float size{ cube.points[1].position.x - cube.points[0].position.x }; // that was the issue !!!!
+		//const Point start{ cube.points[0] };
+		//DrawLine(Line{ size, 0, 0, start.position.x, start.position.y, start.position.z }, lineWidth);
+		//DrawLine(Line{ 0, size, 0, start.position.x, start.position.y, start.position.z }, lineWidth);
+		//DrawLine(Line{ 0, 0, size, start.position.x, start.position.y, start.position.z }, lineWidth);
 
-		DrawLine(Line{ -size, 0, 0, start.position.x + size, start.position.y, start.position.z + size }, lineWidth);
-		DrawLine(Line{ 0, size, 0, start.position.x + size, start.position.y, start.position.z + size }, lineWidth);
-		DrawLine(Line{ 0, 0, -size, start.position.x + size, start.position.y, start.position.z + size }, lineWidth);
+		//DrawLine(Line{ -size, 0, 0, start.position.x + size, start.position.y, start.position.z + size }, lineWidth);
+		//DrawLine(Line{ 0, size, 0, start.position.x + size, start.position.y, start.position.z + size }, lineWidth);
+		//DrawLine(Line{ 0, 0, -size, start.position.x + size, start.position.y, start.position.z + size }, lineWidth);
 
-		DrawLine(Line{ size, 0, 0, start.position.x, start.position.y + size, start.position.z + size }, lineWidth);
-		DrawLine(Line{ 0, -size, 0, start.position.x, start.position.y + size, start.position.z + size }, lineWidth);
-		DrawLine(Line{ 0, 0, -size, start.position.x, start.position.y + size, start.position.z + size }, lineWidth);
+		//DrawLine(Line{ size, 0, 0, start.position.x, start.position.y + size, start.position.z + size }, lineWidth);
+		//DrawLine(Line{ 0, -size, 0, start.position.x, start.position.y + size, start.position.z + size }, lineWidth);
+		//DrawLine(Line{ 0, 0, -size, start.position.x, start.position.y + size, start.position.z + size }, lineWidth);
 
-		DrawLine(Line{ -size, 0, 0, start.position.x + size, start.position.y + size, start.position.z }, lineWidth);
-		DrawLine(Line{ 0, -size, 0, start.position.x + size, start.position.y + size, start.position.z }, lineWidth);
-		DrawLine(Line{ 0, 0, size, start.position.x + size, start.position.y + size, start.position.z }, lineWidth);
-	}
+		//DrawLine(Line{ -size, 0, 0, start.position.x + size, start.position.y + size, start.position.z }, lineWidth);
+		//DrawLine(Line{ 0, -size, 0, start.position.x + size, start.position.y + size, start.position.z }, lineWidth);
+		//DrawLine(Line{ 0, 0, size, start.position.x + size, start.position.y + size, start.position.z }, lineWidth);
+	//}
 
 }

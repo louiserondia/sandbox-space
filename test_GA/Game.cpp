@@ -27,20 +27,7 @@ void Game::Cleanup()
 
 void Game::Update(float elapsedSec)
 {
-	v = Vector{ 0, cosf(time), sinf(time), 0 };
-	motor.e01() = 0;
-	motor.e02() = 0;
-	motor.e03() = 0;
-	motor.e23() = 0;
-	motor.e31() = 0;
-	motor.e12() = 0;
-	motor.s() = 0;
-	//motor.s() = cosf(time);
-	motor.s() = 1;
-	//motor.e12() = 1;
-	motor.e01() = sinf(time);
-	motor.e02() = sinf(time);
-	//motor.e31() = sinf(time);
+	v = Vector{ 0, cosf(time), 0, sinf(time) };
 	time += elapsedSec;
 
 	const Uint8* pStates = SDL_GetKeyboardState(nullptr);
@@ -66,28 +53,31 @@ void Game::Draw()
 		DrawBackground();
 
 
-		TriVector pointGA{ Point::ToPGAPoint(point) };
-		TriVector pointGAReflected{ (v * u * pointGA * GA::Inverse(v * u)).Grade3() };
-		Point pointRefected{ Point::ToEnginePoint(pointGAReflected) };
+		//TriVector pointGA{ Point::ToPGAPoint(point) };
+		//TriVector pointGAReflected{ (u * v * pointGA * GA::Inverse(u * v)).Grade3() };
+		//Point pointRefected{ Point::ToEnginePoint(pointGAReflected) };
 
-		utils::SetColor(Color4f{ 0, 1, 1, 1 });
-		renderer.DrawPoint(point, 5.f);
+		//utils::SetColor(Color4f{ 0, 1, 1, 1 });
+		//renderer.DrawPoint(point, 5.f);
 
-		utils::SetColor(Color4f{ 1, 1, 1, 1 });
-		renderer.DrawPoint(pointRefected, 5.f);
-		utils::SetColor(Color4f{ .75f, .75f, .75f, 1 });
-		renderer.DrawPoint(((pointGAReflected | e2) * GA::Inverse(e2)).Grade3(), 7.f); // reflection : (a . b) a^-1
+		//utils::SetColor(Color4f{ 1, 1, 1, 1 });
+		//renderer.DrawPoint(pointRefected, 5.f);
+		//utils::SetColor(Color4f{ .75f, .75f, .75f, 1 });
+		//renderer.DrawPoint(((pointGAReflected | e2) * GA::Inverse(e2)).Grade3(), 7.f); // reflection : (a . b) a^-1
 
 		utils::SetColor(Color4f{ 1, 1, 1, 1 });
 		renderer.DrawCube(cube, false, 2.f);
 
-		renderer.DrawCube(RotateCube(cube, Motor::Rotation(time * 10, BiVector{0, 0, 0, 0, 1, 0}).Normalize()), false, 2.f);
-		utils::SetColor(Color4f{ 1, 1, 0, 1 });
-		//renderer.DrawCube(RotateCube(cube, e3, (sinf(time) * e1 + cosf(time) * e3).Normalize()), false, 2.f);
-		std::cout << sinf(time) << " cos " << cosf(time)
-			<< "\n calcul : " << (sinf(time) * e1 + cosf(time) * e3) << std::endl;
-
-		renderer.DrawLine(BiVector{ (e3 * (sinf(time) * e1 + cosf(time) * e3)).Grade2()}, 5.f);
+		utils::SetColor(Color4f{ 1, 1, 0, 1 }); // yellow
+		renderer.DrawCube(RotateCube(cube, Motor::Rotation(time * 100, BiVector{0, 0, 0, 1, 0, 0}).Normalize()), true, 2.f);
+		utils::SetColor(Color4f{ 1, 0, 1, 1 }); // magenta
+		renderer.DrawCube(RotateCube(cube, Motor::Rotation(time * 100, BiVector{0, 0, 0, 0, 1, 0}).Normalize()), true, 2.f);
+		utils::SetColor(Color4f{ 0, 1, 1, 1 }); // cyan
+		renderer.DrawCube(RotateCube(cube, Motor::Rotation(time * 100, BiVector{0, 0, 0, 0, 0, 1}).Normalize()), true, 2.f);
+	
+		//renderer.DrawCube(RotateCube(cube, u, v), true, 2.f);
+		//renderer.DrawLine(BiVector{ (e3 * (sinf(time) * e1 + cosf(time) * e3)).Grade2()}, 5.f);
+	
 	}
 	glPopMatrix();
 }

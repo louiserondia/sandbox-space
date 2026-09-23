@@ -23,12 +23,12 @@ Cube::Cube(const Point& start, float size)
 {
 	points[0] = start;
 	points[1] = points[0] + Point{ size, 0, 0 };
+	points[4] = points[0] + Point{ size, size, 0 };
 	points[2] = points[0] + Point{ 0, size, 0 };
 	points[3] = points[0] + Point{ 0, 0, size };
-	points[4] = points[0] + Point{ size, size, 0 };
 	points[5] = points[0] + Point{ size, 0, size };
-	points[6] = points[0] + Point{ 0, size, size };
 	points[7] = points[0] + Point{ size, size, size };
+	points[6] = points[0] + Point{ 0, size, size };
 
 	UpdateGAPoints();
 }
@@ -55,7 +55,7 @@ Cube RotateCube(const Cube& cube, const Vector& N, const Vector& M)
 	Cube c{};
 	for (size_t i{}; i < 8; i++)
 	{
-		c.pointsGA[i] = ((N * M) * cube.pointsGA[i] * GA::Inverse(N * M)).Grade3();
+		c.pointsGA[i] = (N * M * cube.pointsGA[i] * GA::Inverse(N * M)).Grade3();
 	}
 
 	c.UpdatePoints();

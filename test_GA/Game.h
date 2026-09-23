@@ -60,6 +60,6 @@ private:
 	TriVector e021{ 0, 0, 1, 0 };
 	TriVector e123{ 0, 0, 0, 1 };
 
-	Cube	cube{ Point{0, 0, 0}, 1 };
+	Cube	cube{ Point{1, 1, 0}, 1 };
 	Motor	motor{ 0, 0, 0, 0, 0, 0, 0, 0 };
 };
